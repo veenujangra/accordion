@@ -7,7 +7,7 @@ interface AccordionItem {
   status: boolean
 }
 
-export default class Accordion {
+export class Accordion {
   private elements: NodeListOf<HTMLElement>
   private accordionItems: AccordionItem[] = []
   private tl: gsap.core.Timeline | null = null
