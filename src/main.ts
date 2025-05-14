@@ -1,10 +1,6 @@
 import gsap from 'gsap'
 import { each, map } from 'lodash'
 
-interface AccordionOptions {
-  elements: string
-}
-
 interface AccordionItem {
   header: HTMLElement
   body: HTMLElement
@@ -16,9 +12,8 @@ export default class Accordion {
   private accordionItems: AccordionItem[] = []
   private tl: gsap.core.Timeline | null = null
 
-  constructor(options: AccordionOptions) {
-    this.elements = document.querySelectorAll(options.elements)
-    console.log(this.elements)
+  constructor() {
+    this.elements = document.querySelectorAll('[data-accordion=list]') as NodeListOf<HTMLElement>
     this.create()
     this.setProperties()
   }
@@ -26,8 +21,6 @@ export default class Accordion {
   create() {
     this.elements.forEach((element: HTMLElement) => {
       const items = element.querySelectorAll('[data-accordion="item"]')
-
-      console.log(items)
 
       this.accordionItems = map(items, (item: Element): AccordionItem => {
         const header = item.querySelector('[data-accordion="header"]') as HTMLElement
@@ -48,7 +41,6 @@ export default class Accordion {
 
   setProperties() {
     this.resetAccordion()
-    console.log(this.accordionItems)
     this.accordionOpen(this.accordionItems[0].body, 0)
   }
 
@@ -113,7 +105,3 @@ export default class Accordion {
 
   addEventListeners() {}
 }
-
-new Accordion({
-  elements: '[data-accordion=list]' as string,
-})
