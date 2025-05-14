@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 import { each, map } from 'lodash';
-export default class Accordion {
+class Accordion {
     elements;
     accordionItems = [];
     tl = null;
@@ -81,3 +81,4 @@ export default class Accordion {
     }
     addEventListeners() { }
 }
+export default Accordion;

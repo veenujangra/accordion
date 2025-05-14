@@ -1,10 +1,18 @@
 import { defineConfig } from 'vite'
+import path from 'path'
 
 export default defineConfig({
-  devServer: {
+  server: {
     port: 3000,
+    cors: true,
   },
   build: {
+    lib: {
+      entry: path.resolve(__dirname, 'src/main.ts'),
+      name: 'Accordion',
+      fileName: 'main',
+      formats: ['es', 'cjs'],
+    },
     rollupOptions: {
       output: {
         entryFileNames: `[name].js`,
@@ -12,8 +20,5 @@ export default defineConfig({
         assetFileNames: `[name].[ext]`,
       },
     },
-  },
-  server: {
-    cors: true,
   },
 })

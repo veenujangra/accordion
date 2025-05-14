@@ -1,4 +1,4 @@
-export default class Accordion {
+declare class Accordion {
     private elements;
     private accordionItems;
     private tl;
@@ -11,3 +11,4 @@ export default class Accordion {
     resetAccordion(): void;
     addEventListeners(): void;
 }
+export default Accordion;

@@ -1,7 +1,7 @@
 {
   "name": "@pixeto/accordion",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "dist/main.js",
+  "module": "dist/main.js",
   "types": "types/main.d.ts",
   "files": [
     "dist",
@@ -10,8 +10,8 @@
   "exports": {
     ".": {
       "types": "./types/main.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.js"
+      "import": "./dist/main.js",
+      "require": "./dist/main.js"
     }
   },
   "author": {
