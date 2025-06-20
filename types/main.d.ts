@@ -1,14 +1,15 @@
+import './style.css';
 declare class Accordion {
-    private elements;
+    private lists;
     private accordionItems;
     private tl;
     constructor();
     create(): void;
-    setProperties(): void;
+    setProperties(list: HTMLElement): void;
     handleClick(index: number): void;
-    accordionOpen(body: HTMLElement, index: number): void;
+    accordionOpen(list: HTMLElement, body: HTMLElement, index: number): void;
     accordionClose(body: HTMLElement, index: number): void;
-    resetAccordion(): void;
+    resetAccordion(list: HTMLElement): void;
     addEventListeners(): void;
 }
 export default Accordion;
