@@ -69,7 +69,7 @@ class Accordion {
   }
 
   accordionOpen(list: HTMLElement, body: HTMLElement, index: number) {
-    console.log('accordionOpen', index, this.accordionItems)
+    // console.log('accordionOpen', index, this.accordionItems)
     this.tl = gsap.timeline({
       onStart: () => {
         this.resetAccordion(list)

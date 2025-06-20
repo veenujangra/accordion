@@ -52,7 +52,7 @@ class Accordion {
         });
     }
     accordionOpen(list, body, index) {
-        console.log('accordionOpen', index, this.accordionItems);
+        // console.log('accordionOpen', index, this.accordionItems)
         this.tl = gsap.timeline({
             onStart: () => {
                 this.resetAccordion(list);
