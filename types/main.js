@@ -7,7 +7,6 @@ class Accordion {
     constructor() {
         this.elements = document.querySelectorAll('[data-accordion=list]');
         this.create();
-        this.setProperties();
     }
     create() {
         this.elements.forEach((element) => {
@@ -24,6 +23,7 @@ class Accordion {
             each(this.accordionItems, (_item, index) => {
                 this.handleClick(index);
             });
+            this.setProperties();
         });
     }
     setProperties() {

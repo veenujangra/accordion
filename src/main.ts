@@ -15,7 +15,6 @@ class Accordion {
   constructor() {
     this.elements = document.querySelectorAll('[data-accordion=list]') as NodeListOf<HTMLElement>
     this.create()
-    this.setProperties()
   }
 
   create() {
@@ -36,6 +35,7 @@ class Accordion {
       each(this.accordionItems, (_item: AccordionItem, index: number) => {
         this.handleClick(index)
       })
+      this.setProperties()
     })
   }
 
