@@ -120,3 +120,5 @@ class Accordion {
 }
 
 export default Accordion
+
+new Accordion()
