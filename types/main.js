@@ -92,4 +92,3 @@ class Accordion {
     addEventListeners() { }
 }
 export default Accordion;
-new Accordion();
