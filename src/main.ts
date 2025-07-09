@@ -48,9 +48,11 @@ class Accordion {
   setProperties(list: HTMLElement) {
     // Close all accordions initially
     this.resetAccordion(list)
-    // Open the first accordion item of each list by default
-    const listItems = this.accordionItems.filter((item) => item.list === list)
-    this.accordionOpen(list, listItems[0].body, this.accordionItems.indexOf(listItems[0]))
+    if (list.getAttribute('data-accordion') === 'open-first') {
+      // Open the first accordion item of each list if specified
+      const listItems = this.accordionItems.filter((item) => item.list === list)
+      this.accordionOpen(list, listItems[0].body, this.accordionItems.indexOf(listItems[0]))
+    }
   }
 
   handleClick(index: number) {
@@ -121,4 +123,4 @@ class Accordion {
 
 export default Accordion
 
-new Accordion()
+// new Accordion()
