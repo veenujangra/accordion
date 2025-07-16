@@ -6,6 +6,8 @@ interface AccordionItem {
   list: HTMLElement
   header: HTMLElement
   body: HTMLElement
+  close: HTMLElement | null
+  // Using HTMLElement | null for close to handle cases where it might not exist
   status: boolean
 }
 
@@ -15,7 +17,9 @@ class Accordion {
   private tl: gsap.core.Timeline | null = null
 
   constructor() {
-    this.lists = document.querySelectorAll('[data-accordion=list]') as NodeListOf<HTMLElement>
+    this.lists = document.querySelectorAll(
+      '[data-accordion=list]'
+    ) as NodeListOf<HTMLElement>
     this.create()
   }
 
@@ -26,11 +30,13 @@ class Accordion {
       const accordionItems = map(items, (item: Element): AccordionItem => {
         const header = item.querySelector('[data-accordion="header"]') as HTMLElement
         const body = item.querySelector('[data-accordion="body"]') as HTMLElement
+        const close = item.querySelector('[data-accordion="close"]') as HTMLElement | null
 
         return {
           list,
           header,
           body,
+          close: close || header, // Use header as fallback if close button is not present
           status: true,
         }
       })
@@ -51,7 +57,11 @@ class Accordion {
     if (list.getAttribute('data-accordion') === 'open-first') {
       // Open the first accordion item of each list if specified
       const listItems = this.accordionItems.filter((item) => item.list === list)
-      this.accordionOpen(list, listItems[0].body, this.accordionItems.indexOf(listItems[0]))
+      this.accordionOpen(
+        list,
+        listItems[0].body,
+        this.accordionItems.indexOf(listItems[0])
+      )
     }
   }
 
@@ -59,6 +69,7 @@ class Accordion {
     const list = this.accordionItems[index].list
     const header = this.accordionItems[index].header
     const body = this.accordionItems[index].body
+    const close = this.accordionItems[index].close
 
     header.addEventListener('click', () => {
       const status = this.accordionItems[index].status
@@ -67,6 +78,9 @@ class Accordion {
       } else {
         this.accordionOpen(list, body, index)
       }
+    })
+    close?.addEventListener('click', () => {
+      this.accordionClose(body, index)
     })
   }
 
