@@ -15,10 +15,12 @@ class Accordion {
             const accordionItems = map(items, (item) => {
                 const header = item.querySelector('[data-accordion="header"]');
                 const body = item.querySelector('[data-accordion="body"]');
+                const close = item.querySelector('[data-accordion="close"]');
                 return {
                     list,
                     header,
                     body,
+                    close: close || header, // Use header as fallback if close button is not present
                     status: true,
                 };
             });
@@ -33,14 +35,17 @@ class Accordion {
     setProperties(list) {
         // Close all accordions initially
         this.resetAccordion(list);
-        // Open the first accordion item of each list by default
-        // const listItems = this.accordionItems.filter((item) => item.list === list)
-        // this.accordionOpen(list, listItems[0].body, this.accordionItems.indexOf(listItems[0]))
+        if (list.getAttribute('data-accordion') === 'open-first') {
+            // Open the first accordion item of each list if specified
+            const listItems = this.accordionItems.filter((item) => item.list === list);
+            this.accordionOpen(list, listItems[0].body, this.accordionItems.indexOf(listItems[0]));
+        }
     }
     handleClick(index) {
         const list = this.accordionItems[index].list;
         const header = this.accordionItems[index].header;
         const body = this.accordionItems[index].body;
+        const close = this.accordionItems[index].close;
         header.addEventListener('click', () => {
             const status = this.accordionItems[index].status;
             if (status === true) {
@@ -49,6 +54,9 @@ class Accordion {
             else {
                 this.accordionOpen(list, body, index);
             }
+        });
+        close?.addEventListener('click', () => {
+            this.accordionClose(body, index);
         });
     }
     accordionOpen(list, body, index) {
@@ -91,5 +99,5 @@ class Accordion {
     }
     addEventListeners() { }
 }
-// export default Accordion
+export default Accordion;
 new Accordion();

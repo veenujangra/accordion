@@ -17,9 +17,7 @@ class Accordion {
   private tl: gsap.core.Timeline | null = null
 
   constructor() {
-    this.lists = document.querySelectorAll(
-      '[data-accordion=list]'
-    ) as NodeListOf<HTMLElement>
+    this.lists = document.querySelectorAll('[data-accordion=list]') as NodeListOf<HTMLElement>
     this.create()
   }
 
@@ -36,7 +34,7 @@ class Accordion {
           list,
           header,
           body,
-          close: close || header, // Use header as fallback if close button is not present
+          close: close,
           status: true,
         }
       })
@@ -57,11 +55,7 @@ class Accordion {
     if (list.getAttribute('data-accordion') === 'open-first') {
       // Open the first accordion item of each list if specified
       const listItems = this.accordionItems.filter((item) => item.list === list)
-      this.accordionOpen(
-        list,
-        listItems[0].body,
-        this.accordionItems.indexOf(listItems[0])
-      )
+      this.accordionOpen(list, listItems[0].body, this.accordionItems.indexOf(listItems[0]))
     }
   }
 
