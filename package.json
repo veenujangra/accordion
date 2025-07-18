@@ -18,7 +18,7 @@
     "name": "Veenu Jangra"
   },
   "private": false,
-  "version": "0.0.14",
+  "version": "0.0.15",
   "type": "module",
   "scripts": {
     "dev": "vite",
